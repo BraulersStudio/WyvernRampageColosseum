@@ -222,11 +222,10 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator onDeath()
     {
-
         isAlive = false;
         isDamagable = false;
         yield return new WaitForSeconds(5f);
-        Destroy(gameObject);
+        Destroy(gameObject.transform.parent.gameObject);
     }
 
     private void OnTriggerStay(Collider other)
@@ -234,7 +233,7 @@ public class EnemyController : MonoBehaviour
 
         if (other.gameObject.CompareTag("Player") && !hasHit)
         {
-            Debug.Log("Damage to: " + other.gameObject.name);
+            //Debug.Log("Damage to: " + other.gameObject.name);
             other.GetComponent<PlayerController>().TakeDamage(attackDamage);
             hasHit = true;
         }

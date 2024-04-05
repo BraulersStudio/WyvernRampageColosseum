@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Ground
   - Enemy
+  - Heart
+  - Speed
+  - Damage
   layers:
   - Default
   - TransparentFX

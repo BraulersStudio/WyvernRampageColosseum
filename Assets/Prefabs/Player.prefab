@@ -9760,10 +9760,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ed1facf74274f64bb0a9d4721495173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  walkSpeed: 5
-  runSpeed: 10
-  backSpeed: 3
+  moveSpeed: 0
+  walkSpeed: 10
+  runSpeed: 20
+  backSpeed: 6
   gravity: -9.81
   jumpForce: 0
   isGrounded: 0
@@ -9780,7 +9780,7 @@ MonoBehaviour:
     m_Bits: 8
   weaponGameObject: {fileID: 0}
   weaponBoxCollider: {fileID: 0}
-  timeBetweenAttacks: 3
+  timeBetweenAttacks: 0.5
   timeToHit: 0.3
   timeDamage: 0.3
   health: 1000
