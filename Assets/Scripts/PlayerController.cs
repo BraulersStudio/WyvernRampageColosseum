@@ -4,77 +4,103 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    //Variables
+    [SerializeField] private float moveSpeed, walkSpeed, runSpeed, backSpeed, gravity, jumpForce;
+    [SerializeField] private bool isGrounded;
+    private Vector3 moveDirection, velocity; 
+    //References    
+    private CharacterController controller;
+    private Animator anim;
     private Rigidbody playerRb;
-    public float speed;
-    public float initialSpeed = 11;
-     public GameObject focalPoint;
-    [SerializeField] private Animator playerAnim;
-    private bool isBoosting = false;
-    void Start()
-    {
+
+    private void Start(){
+        controller = GetComponent<CharacterController>();
+        anim = GetComponentInChildren<Animator>();
         playerRb = GetComponent<Rigidbody>();
-        playerAnim = GetComponent<Animator>();    
+    } 
+
+    private void Update(){
+        Move();
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Attack();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        Movement();
+    private void Move(){
         
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            isBoosting = true;
+        float moveZ = Input.GetAxis("Vertical");
+        float moveX = Input.GetAxis("Horizontal");
+        moveDirection = new Vector3(moveX, 0, moveZ);
+        moveDirection.Normalize(); 
+        
+        if(isGrounded && velocity.y<0){
+            velocity.y = -2f;
         }
+        if(isGrounded){
+            if(moveDirection != Vector3.zero && !Input.GetKey(KeyCode.LeftShift)){
+                Walk();
+            }
+            else if(moveDirection!= Vector3.zero && Input.GetKey(KeyCode.LeftShift)){
+                Run();
+            }
+            else if(moveDirection == Vector3.zero){
+                Idle();
+            }
+            
+            moveDirection *= moveSpeed;
 
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            isBoosting = false;
+            if(Input.GetKey(KeyCode.Space)){
+                Jump();
+            }
         }
+        
 
-        if (isBoosting)
-        {
-            // Aumentar la velocidad mientras se mantiene presionada la tecla Espacio
-            speed = 12;
-        }
-        else
-        {
-            // Restaurar la velocidad inicial si la tecla Espacio no está presionada
-            speed = initialSpeed;
-        }
+        
+        controller.Move(moveDirection * Time.deltaTime);       
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+        
     }
 
-    void Movement()
-    {
-        float forwardInput = Input.GetAxis("Vertical");
-        float horizontalInput = Input.GetAxis("Horizontal");
+    private void Idle(){
+        anim.SetFloat("Speed", 0);
+    }
 
-        Vector3 cameraForward = Camera.main.transform.forward;
-        cameraForward.y = 0f; // Mantenemos la componente y en cero para evitar movimientos verticales
-
-        Vector3 movementDirection = cameraForward * forwardInput + Camera.main.transform.right * horizontalInput;
-        movementDirection.Normalize(); // Normalizamos el vector de dirección para evitar movimientos diagonales más rápidos
-
-        // Aplicar fuerzas al jugador solo si hay entrada de movimiento
-        if (forwardInput != 0 || horizontalInput != 0)
-        {
-            // Calculamos la fuerza de movimiento multiplicando la dirección por la velocidad
-            Vector3 movementForce = movementDirection * speed * Time.deltaTime;
-            
-            // Aplicamos la fuerza al jugador
-            playerRb.AddForce(movementForce, ForceMode.VelocityChange);
-
-            // Rotar el jugador hacia la dirección de movimiento
-            Quaternion newRotation = Quaternion.LookRotation(movementDirection);
-            playerRb.MoveRotation(newRotation);
-
-            // Activar la animación del jugador
-            playerAnim.SetBool("Walking", true);
+    private void Walk(){
+        if(moveDirection.z<0){
+            moveSpeed = backSpeed;
+            anim.SetFloat("Speed", 0.5f);
+        }else{
+          moveSpeed = walkSpeed;  
+          anim.SetFloat("Speed", 0.1f);
         }
-        else
-        {
-            // Detener la animación si no hay movimiento
-            playerAnim.SetBool("Walking", false);
-        }
+        
+    }
+
+    private void Run(){
+        if(moveDirection.z<0){
+            moveSpeed = backSpeed;
+            anim.SetFloat("Speed", 0.5f);
+        }else{
+          moveSpeed = runSpeed; 
+          anim.SetFloat("Speed", 0.2f); 
+        }    
+    }
+
+    private void Jump(){
+       velocity.y = Mathf.Sqrt(jumpForce* -2 *gravity);
+       isGrounded=false;
+       anim.SetFloat("Speed", 1);
+    }
+    private void Attack(){
+        
+    }
+
+    private void OnCollisionEnter(Collision collision) {
+        if(collision.gameObject.CompareTag("Ground")){
+            isGrounded = true;
+        } 
     }
 }
