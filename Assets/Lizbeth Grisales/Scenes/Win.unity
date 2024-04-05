@@ -1091,7 +1091,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 640b0e49940d7d344984e694d9a46956, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a181e6bb25a1aa0418845070ac810d48, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1345,7 +1345,7 @@ RectTransform:
   m_GameObject: {fileID: 2054350651}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.4827, y: 4.4827, z: 4.4827}
+  m_LocalScale: {x: 5.4334807, y: 5.4334807, z: 5.4334807}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 358470793}
@@ -1353,7 +1353,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 212, y: 28}
+  m_AnchoredPosition: {x: 309, y: -3}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2054350653
@@ -1376,7 +1376,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 67ac7dad45c137442945fbfb28d64cad, type: 3}
+  m_Texture: {fileID: 2800000, guid: 849fe3f772dd6384ea9ee71d4660c1ad, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
