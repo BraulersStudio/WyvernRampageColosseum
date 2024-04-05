@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -43,7 +44,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float timeToHit = 0.8f;
     [SerializeField] private float timeDamage = 0.3f;
     [SerializeField] private int health = 100;
-    [SerializeField] private float attackDamage = 20f;
+    [SerializeField] private int attackDamage = 20;
     bool hasHit = false;
     private bool _isAlive = true;
     [SerializeField]
@@ -71,7 +72,7 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        playerTransform = GameObject.Find("Player").transform;
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         biteHitBox = gameObject.transform.Find("BiteHitBox").gameObject;
@@ -232,7 +233,8 @@ public class EnemyController : MonoBehaviour
 
         if (other.gameObject.CompareTag("Player") && !hasHit)
         {
-            Debug.Log("OnTrigger" + other.gameObject.tag);
+            Debug.Log("Damage to: " + other.gameObject.name);
+            other.GetComponent<PlayerController>().TakeDamage(attackDamage);
             hasHit = true;
         }
 

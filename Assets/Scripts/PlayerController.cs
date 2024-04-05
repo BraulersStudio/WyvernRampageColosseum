@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -12,9 +13,10 @@ public class PlayerController : MonoBehaviour
     //References    
     private CharacterController controller;
     private Animator anim;
-    private Rigidbody playerRb;
 
     public Vector3 move;
+
+    private bool isWalkingBackwards = false;
 
 
     //
@@ -38,11 +40,39 @@ public class PlayerController : MonoBehaviour
     //
 
 
-    private void Start()
+    [Header("Attacking")]
+    [SerializeField] GameObject weaponGameObject;
+    [SerializeField] BoxCollider weaponBoxCollider;
+    [SerializeField] private float timeBetweenAttacks = 3f;
+    [SerializeField] private float timeToHit = 0.8f;
+    [SerializeField] private float timeDamage = 0.3f;
+    [SerializeField] private int health = 100;
+    [SerializeField] private int attackDamage = 20;
+    bool hasHit = false;
+    private bool _isAlive = true;
+    [SerializeField]
+    public bool isAlive
+    {
+        get { return _isAlive; }
+        private set
+        {
+            _isAlive = value;
+            anim.SetBool("isAlive", value);
+        }
+    }
+    [SerializeField] private bool isDamagable = true;
+    bool alreadyAttacked;
+
+
+
+    private void Awake()
     {
         controller = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
-        playerRb = GetComponent<Rigidbody>();
+        weaponGameObject = GameObject.Find("weaponHitBox").gameObject;
+        weaponBoxCollider = weaponGameObject.GetComponentInChildren<BoxCollider>();
+        weaponBoxCollider.enabled = false;
+
     }
 
     private void Update()
@@ -52,49 +82,55 @@ public class PlayerController : MonoBehaviour
         {
             Attack();
         }
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            TakeDamage(50);
+        }
     }
 
-    private void Move0()
-    {
-        float moveZ = Input.GetAxis("Vertical");
-        float moveX = Input.GetAxis("Horizontal");
-        moveDirection = new Vector3(moveX, 0, moveZ);
-        moveDirection.Normalize();
+    #region Movement
+    // private void Move0()
+    // {
+    //     float moveZ = Input.GetAxis("Vertical");
+    //     float moveX = Input.GetAxis("Horizontal");
+    //     moveDirection = new Vector3(moveX, 0, moveZ);
+    //     moveDirection.Normalize();
 
-        if (isGrounded && velocity.y < 0)
-        {
-            velocity.y = -2f;
-        }
-        if (isGrounded)
-        {
-            if (moveDirection != Vector3.zero && !Input.GetKey(KeyCode.LeftShift))
-            {
-                Walk();
-            }
-            else if (moveDirection != Vector3.zero && Input.GetKey(KeyCode.LeftShift))
-            {
-                Run();
-            }
-            else if (moveDirection == Vector3.zero)
-            {
-                Idle();
-            }
+    //     if (isGrounded && velocity.y < 0)
+    //     {
+    //         velocity.y = -2f;
+    //     }
+    //     if (isGrounded)
+    //     {
+    //         if (moveDirection != Vector3.zero && !Input.GetKey(KeyCode.LeftShift))
+    //         {
+    //             Walk();
+    //         }
+    //         else if (moveDirection != Vector3.zero && Input.GetKey(KeyCode.LeftShift))
+    //         {
+    //             Run();
+    //         }
+    //         else if (moveDirection == Vector3.zero)
+    //         {
+    //             Idle();
+    //         }
 
-            moveDirection *= moveSpeed;
+    //         moveDirection *= moveSpeed;
 
-            if (Input.GetKey(KeyCode.Space))
-            {
-                Jump();
-            }
-        }
+    //         if (Input.GetKey(KeyCode.Space))
+    //         {
+    //             Jump();
+    //         }
+    //     }
 
 
 
-        controller.Move(moveDirection * Time.deltaTime);
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
+    //     controller.Move(moveDirection * Time.deltaTime);
+    //     velocity.y += gravity * Time.deltaTime;
+    //     controller.Move(velocity * Time.deltaTime);
 
-    }
+    // }
 
     private void Move()
     {
@@ -107,6 +143,9 @@ public class PlayerController : MonoBehaviour
 
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
+
+        if (z < 0) isWalkingBackwards = true;
+        else isWalkingBackwards = false;
 
         move = transform.right * x + transform.forward * z;
         move = move.normalized;
@@ -125,10 +164,10 @@ public class PlayerController : MonoBehaviour
             Idle();
         }
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
+        // if (Input.GetButtonDown("Jump") && isGrounded)
+        // {
+        //     velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        // }
 
 
         controller.Move(move * speed * Time.deltaTime);
@@ -140,54 +179,123 @@ public class PlayerController : MonoBehaviour
 
     private void Idle()
     {
-        anim.SetFloat("Speed", 0);
+        anim.SetFloat("speed", 0f);
     }
 
     private void Walk()
     {
-        if (move.z < 0)
+        if (isWalkingBackwards)
         {
-            moveSpeed = backSpeed;
-            anim.SetFloat("Speed", 0.5f);
+            speed = backSpeed;
+            anim.SetFloat("speed", -backSpeed);
         }
         else
         {
-            moveSpeed = walkSpeed;
-            anim.SetFloat("Speed", 0.1f);
+            speed = walkSpeed;
+            anim.SetFloat("speed", walkSpeed);
         }
 
     }
 
     private void Run()
     {
-        if (move.z < 0)
+        if (isWalkingBackwards)
         {
-            moveSpeed = backSpeed;
-            anim.SetFloat("Speed", 0.5f);
+            speed = backSpeed;
+            anim.SetFloat("speed", -backSpeed);
         }
         else
         {
-            moveSpeed = runSpeed;
-            anim.SetFloat("Speed", 0.2f);
+            speed = runSpeed;
+            anim.SetFloat("speed", runSpeed);
         }
     }
 
-    private void Jump()
-    {
-        velocity.y = Mathf.Sqrt(jumpForce * -2 * gravity);
-        isGrounded = false;
-        anim.SetFloat("Speed", 1);
-    }
+    #endregion
+
+
     private void Attack()
     {
-        Debug.Log("Attacking");
-    }
+        speed = 0f;
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (!alreadyAttacked)
         {
-            isGrounded = true;
+            // Attack code
+            anim.SetTrigger("isAttacking");
+
+            Invoke(nameof(DealDamage), timeToHit);
+
+
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
+
+    private void DealDamage()
+    {
+        StartCoroutine(activateWeaponHitBox());
+    }
+
+    IEnumerator activateWeaponHitBox()
+    {
+        weaponBoxCollider.enabled = true;
+        yield return new WaitForSeconds(timeDamage);
+        weaponBoxCollider.enabled = false;
+    }
+
+    private void ResetAttack()
+    {
+        alreadyAttacked = false;
+        hasHit = false;
+    }
+
+    private void ResetDamagable()
+    {
+        isDamagable = true;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (isDamagable)
+        {
+            speed = 0f;
+            health -= damage;
+            Debug.Log("Player hit");
+            anim.SetTrigger("isHit");
+            isDamagable = false;
+            Invoke(nameof(ResetDamagable), 1f);
+        }
+
+        if (health <= 0) StartCoroutine(onDeath());
+    }
+
+    IEnumerator onDeath()
+    {
+
+        isAlive = false;
+        isDamagable = false;
+        yield return new WaitForSeconds(4f);
+        Destroy(gameObject);
+    }
+
+
+
+    private void OnTriggerStay(Collider other)
+    {
+
+        if (other.gameObject.CompareTag("Enemy") && !hasHit)
+        {
+            Debug.Log("Damage to: " + other.gameObject.name);
+            other.GetComponent<EnemyController>().TakeDamage(attackDamage);
+            hasHit = true;
+        }
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.gameObject.name);
+    }
+
+
 }

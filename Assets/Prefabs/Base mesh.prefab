@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1607708746
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1607708747}
-  m_Layer: 6
-  m_Name: CameraFocalPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1607708747
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1607708746}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.67, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7201503860108104638}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7201503860108460288
 GameObject:
   m_ObjectHideFlags: 0
@@ -9578,7 +9547,6 @@ Transform:
   - {fileID: 7201503860108104410}
   - {fileID: 7201503860108105056}
   - {fileID: 8627075172211061233}
-  - {fileID: 1607708747}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9656,6 +9624,7 @@ MonoBehaviour:
   isGrounded: 0
   moveDirection: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
+  move: {x: 0, y: 0, z: 0}
   speed: 6
   jumpHeight: 3
   scale: 2
@@ -9664,6 +9633,14 @@ MonoBehaviour:
   groudnMask:
     serializedVersion: 2
     m_Bits: 8
+  weaponGameObject: {fileID: 0}
+  weaponBoxCollider: {fileID: 0}
+  timeBetweenAttacks: 3
+  timeToHit: 0.8
+  timeDamage: 0.3
+  health: 100
+  attackDamage: 20
+  isDamagable: 1
 --- !u!114 &1914368623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9678,6 +9655,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSensitivity: 100
   playerBody: {fileID: 7201503860108104638}
+  xRotation: 0
 --- !u!1 &7201503860108464064
 GameObject:
   m_ObjectHideFlags: 0
