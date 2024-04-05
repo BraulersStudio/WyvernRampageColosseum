@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 4642375409995385692}
   m_Layer: 0
   m_Name: Enemy2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -219,7 +219,8 @@ MonoBehaviour:
   runningSpeed: 10
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 15
-  walkOffSet: 10
+  walkPivotX: 25
+  walkPivotZ: 33
   walkTimer: 0
   biteHitBox: {fileID: 0}
   timeBetweenAttacks: 3

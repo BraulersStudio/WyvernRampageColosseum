@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
     [Header("Attacking")]
     [SerializeField] GameObject weaponGameObject;
     [SerializeField] BoxCollider weaponBoxCollider;
-    [SerializeField] private float timeBetweenAttacks = 3f;
+    [SerializeField] private float timeBetweenAttacks = 0.5f;
     [SerializeField] private float timeToHit = 0.8f;
     [SerializeField] private float timeDamage = 0.3f;
     [SerializeField] private int health = 100;
@@ -282,12 +282,33 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-
         if (other.gameObject.CompareTag("Enemy") && !hasHit)
         {
             Debug.Log("Damage to: " + other.gameObject.name);
             other.GetComponent<EnemyController>().TakeDamage(attackDamage);
             hasHit = true;
+        }
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.gameObject.CompareTag("Heart"))
+        {
+            Debug.Log("Pickup Heart");
+            health += 10;
+            other.gameObject.SetActive(false);
+        }
+        else if (other.gameObject.CompareTag("Speed"))
+        {
+            Debug.Log("Pickup Speed");
+            other.gameObject.SetActive(false);
+        }
+        if (other.gameObject.CompareTag("Damage"))
+        {
+            Debug.Log("Pickup Damage");
+            other.gameObject.SetActive(false);
         }
 
     }
