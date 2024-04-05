@@ -34,7 +34,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Vector3 walkPoint;
     bool walkPointSet;
     [SerializeField] private float walkPointRange = 15f;
-    [SerializeField] private float walkOffSet = 10f;
+    [SerializeField] private float walkPivotX = 25f;
+    [SerializeField] private float walkPivotZ = 33f;
     [SerializeField] private float walkTimer = 0f;
 
 
@@ -146,10 +147,10 @@ public class EnemyController : MonoBehaviour
     private void SearchWalkPoint()
     {
         // Calculate random point in range to walk to
-        float randomX = Random.Range(-walkPointRange, walkPointRange) + walkOffSet;
-        float randomZ = Random.Range(-walkPointRange, walkPointRange) + walkOffSet;
+        float randomX = Random.Range(-walkPointRange, walkPointRange) * 2f;
+        float randomZ = Random.Range(-walkPointRange, walkPointRange) * 2f;
 
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+        walkPoint = new Vector3(walkPivotX + randomX, transform.position.y, walkPivotZ + randomZ);
 
         if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
             walkPointSet = true;
@@ -224,7 +225,7 @@ public class EnemyController : MonoBehaviour
 
         isAlive = false;
         isDamagable = false;
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(5f);
         Destroy(gameObject);
     }
 

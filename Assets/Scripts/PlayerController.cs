@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float timeToHit = 0.8f;
     [SerializeField] private float timeDamage = 0.3f;
     [SerializeField] private int health = 100;
-    [SerializeField] private int attackDamage = 20;
+    [SerializeField] public int attackDamage = 20;
     bool hasHit = false;
     private bool _isAlive = true;
     [SerializeField]
@@ -290,11 +290,6 @@ public class PlayerController : MonoBehaviour
             hasHit = true;
         }
 
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log(other.gameObject.name);
     }
 
 
