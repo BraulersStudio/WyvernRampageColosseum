@@ -5,40 +5,21 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    //Variables
-    [SerializeField] private float moveSpeed, walkSpeed, runSpeed, backSpeed, gravity, jumpForce;
-    [SerializeField] private bool isGrounded;
-    public Vector3 moveDirection, velocity;
-
     //References    
     private CharacterController controller;
     private Animator anim;
 
-    public Vector3 move;
-
+    // Movement
+    [Header("Movement")]
+    [SerializeField] private float speed = 12f;
+    [SerializeField] private float walkSpeed, runSpeed, backSpeed, gravity;
+    [SerializeField] private LayerMask groudnMask;
+    [SerializeField] private Transform groundCheck;
+    private Vector3 move;
+    private bool isGrounded;
+    private Vector3 velocity;
     private bool isWalkingBackwards = false;
-
-
-    //
-
-
-
-
-
-    public float speed = 12f;
-
-    public float jumpHeight = 3f;
-    public float scale = 2;
-
-    public Transform groundCheck;
-    public float groundDistance = 0.4f;
-    public LayerMask groudnMask;
-
-
-
-
-    //
-
+    private float groundDistance = 0.4f;
 
     [Header("Attacking")]
     [SerializeField] GameObject weaponGameObject;
@@ -46,11 +27,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float timeBetweenAttacks = 0.5f;
     [SerializeField] private float timeToHit = 0.8f;
     [SerializeField] private float timeDamage = 0.3f;
-    [SerializeField] private int health = 100;
+    [SerializeField] public int health = 100;
     [SerializeField] public int attackDamage = 20;
-    bool hasHit = false;
+    private bool isDamagable = true;
+    private bool hasHit = false;
     private bool _isAlive = true;
-    [SerializeField]
     public bool isAlive
     {
         get { return _isAlive; }
@@ -60,8 +41,9 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isAlive", value);
         }
     }
-    [SerializeField] private bool isDamagable = true;
     bool alreadyAttacked;
+
+
 
 
 
@@ -82,55 +64,9 @@ public class PlayerController : MonoBehaviour
         {
             Attack();
         }
-
-        if (Input.GetButtonDown("Jump"))
-        {
-            TakeDamage(50);
-        }
     }
 
     #region Movement
-    // private void Move0()
-    // {
-    //     float moveZ = Input.GetAxis("Vertical");
-    //     float moveX = Input.GetAxis("Horizontal");
-    //     moveDirection = new Vector3(moveX, 0, moveZ);
-    //     moveDirection.Normalize();
-
-    //     if (isGrounded && velocity.y < 0)
-    //     {
-    //         velocity.y = -2f;
-    //     }
-    //     if (isGrounded)
-    //     {
-    //         if (moveDirection != Vector3.zero && !Input.GetKey(KeyCode.LeftShift))
-    //         {
-    //             Walk();
-    //         }
-    //         else if (moveDirection != Vector3.zero && Input.GetKey(KeyCode.LeftShift))
-    //         {
-    //             Run();
-    //         }
-    //         else if (moveDirection == Vector3.zero)
-    //         {
-    //             Idle();
-    //         }
-
-    //         moveDirection *= moveSpeed;
-
-    //         if (Input.GetKey(KeyCode.Space))
-    //         {
-    //             Jump();
-    //         }
-    //     }
-
-
-
-    //     controller.Move(moveDirection * Time.deltaTime);
-    //     velocity.y += gravity * Time.deltaTime;
-    //     controller.Move(velocity * Time.deltaTime);
-
-    // }
 
     private void Move()
     {
@@ -150,7 +86,8 @@ public class PlayerController : MonoBehaviour
         move = transform.right * x + transform.forward * z;
         move = move.normalized;
 
-
+        // Verifies if the player is moving and if the player is pressing shift
+        // to change the speed accordingly
         if (move != Vector3.zero && !Input.GetKey(KeyCode.LeftShift))
         {
             Walk();
@@ -164,16 +101,8 @@ public class PlayerController : MonoBehaviour
             Idle();
         }
 
-        // if (Input.GetButtonDown("Jump") && isGrounded)
-        // {
-        //     velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        // }
-
-
         controller.Move(move * speed * Time.deltaTime);
-
         velocity.y += gravity * Time.deltaTime;
-
         controller.Move(velocity * Time.deltaTime);
     }
 
@@ -181,7 +110,6 @@ public class PlayerController : MonoBehaviour
     {
         anim.SetFloat("speed", 0f);
     }
-
     private void Walk()
     {
         if (isWalkingBackwards)
@@ -196,7 +124,6 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-    //este si
     private void Run()
     {
         if (isWalkingBackwards)
@@ -214,6 +141,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
 
+    #region Attack
     private void Attack()
     {
         speed = 0f;
@@ -249,6 +177,11 @@ public class PlayerController : MonoBehaviour
         hasHit = false;
     }
 
+    #endregion
+
+
+    #region TakeDamage
+
     private void ResetDamagable()
     {
         isDamagable = true;
@@ -277,6 +210,8 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(4f);
         Destroy(gameObject);
     }
+
+    #endregion
 
 
 
@@ -310,8 +245,5 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Pickup Damage");
             other.gameObject.SetActive(false);
         }
-
     }
-
-
 }
