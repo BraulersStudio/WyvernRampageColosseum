@@ -196,7 +196,7 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
+    //este si
     private void Run()
     {
         if (isWalkingBackwards)
