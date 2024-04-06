@@ -9,21 +9,14 @@ public class SpawnManager : MonoBehaviour
     public GameObject enemyPrefab3;
     public GameObject enemyPrefab4;
     public GameObject[] powerupPrefab;
-    private float spawnRangeX = 12.5f;
-    private float spawnRangeZ = 12.5f;
-    private Vector3 spawnPivot = new Vector3(30, 0, 0);
 
-
-    public int enemyCount, enemySpeed;
+    public int enemyCount;
     public int waveCount = 1;
     public GameObject player;
 
-    public Vector3 playerInitialPosition;
-
-    void Awake()
-    {
-        playerInitialPosition = player.transform.position;
-    }
+    private float spawnRangeX = 12.5f;
+    private float spawnRangeZ = 12.5f;
+    private Vector3 spawnPivot = new Vector3(30, 0, 0);
 
     void Update()
     {

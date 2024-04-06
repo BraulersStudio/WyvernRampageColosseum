@@ -43,10 +43,6 @@ public class PlayerController : MonoBehaviour
     }
     bool alreadyAttacked;
 
-
-
-
-
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
