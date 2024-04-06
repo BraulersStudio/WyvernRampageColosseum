@@ -14,9 +14,9 @@ public class SpawnManager : MonoBehaviour
     public int waveCount = 1;
     public GameObject player;
 
-    private float spawnRangeX = 12.5f;
-    private float spawnRangeZ = 12.5f;
-    private Vector3 spawnPivot = new Vector3(30, 0, 0);
+    private float spawnRangeX = 22f;
+    private float spawnRangeZ = 17f;
+    private Vector3 spawnPivot = new Vector3(35, 0, 35);
 
     void Update()
     {
@@ -25,13 +25,12 @@ public class SpawnManager : MonoBehaviour
         {
             SpawnEnemyWave();
         }
-
     }
 
     Vector3 GenerateSpawnPosition()
     {
-        float xPos = player.transform.position.x + Random.Range(-spawnRangeX, spawnRangeX);
-        float zPos = player.transform.position.z + Random.Range(-spawnRangeZ, spawnRangeZ);
+        float xPos = Random.Range(-spawnRangeX, spawnRangeX);
+        float zPos = Random.Range(-spawnRangeZ, spawnRangeZ);
         return new Vector3(xPos, player.transform.position.y, zPos) + spawnPivot;
     }
 
@@ -46,7 +45,11 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnEnemyWave()
     {
-        SpawnPowerup();
+        for (int i = 0; i < 1000; i++)
+        {
+
+            SpawnPowerup();
+        }
 
         // Spawn number of enemy based on wave number
         if (waveCount <= 3)

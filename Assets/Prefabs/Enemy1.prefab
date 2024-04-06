@@ -88,6 +88,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Albino
       objectReference: {fileID: 0}
+    - target: {fileID: 100720, guid: 8252519d2c6fd014bb5f75765a8c4fda, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 458774, guid: 8252519d2c6fd014bb5f75765a8c4fda, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -209,6 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
   playerTransform: {fileID: 0}
+  animator: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
@@ -217,21 +222,20 @@ MonoBehaviour:
     m_Bits: 64
   walkingSpeed: 4
   runningSpeed: 10
+  _speed: 0
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 15
   walkPivotX: 25
   walkPivotZ: 33
   walkTimer: 0
   biteHitBox: {fileID: 0}
+  biteBoxCollider: {fileID: 0}
   timeBetweenAttacks: 3
   timeToHit: 0.7
   timeDamage: 0.3
-  health: 100
-  attackDamage: 20
-  isDamagable: 1
-  biteBoxCollider: {fileID: 0}
-  sightRange: 20
+  health: 200
+  attackDamage: 30
+  sightRange: 30
   attackRange: 5
   playerInSightRange: 0
   playerInAttackRange: 0
-  animator: {fileID: 0}

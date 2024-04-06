@@ -43,6 +43,15 @@ public class PlayerController : MonoBehaviour
     }
     bool alreadyAttacked;
 
+    [Header("PowerUp")]
+    private bool isPowerUpActive;
+    [SerializeField] private float powerUpSpeedMultiplier = 1f;
+    [SerializeField] private int powerUpDamageMultiplier = 1;
+    [SerializeField] private int powerUpHealth = 40;
+    [SerializeField] private float powerUpTime = 5f; // Time of power up active in seconds
+    private float powerUpTimer = 0f;
+
+
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -59,6 +68,18 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             Attack();
+        }
+
+        if (isPowerUpActive)
+        {
+            if (powerUpTimer < powerUpTime)
+            {
+                powerUpTimer += Time.deltaTime;
+            }
+            else
+            {
+                ResetPowerUp();
+            }
         }
     }
 
@@ -97,7 +118,7 @@ public class PlayerController : MonoBehaviour
             Idle();
         }
 
-        controller.Move(move * speed * Time.deltaTime);
+        controller.Move(move * speed * powerUpSpeedMultiplier * Time.deltaTime);
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
@@ -209,6 +230,13 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
+    private void ResetPowerUp()
+    {
+        isPowerUpActive = false;
+        powerUpTimer = 0f;
+        powerUpSpeedMultiplier = 1f;
+        powerUpDamageMultiplier = 1;
+    }
 
 
     private void OnTriggerStay(Collider other)
@@ -216,29 +244,31 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy") && !hasHit)
         {
             Debug.Log("Damage to: " + other.gameObject.name);
-            other.GetComponent<EnemyController>().TakeDamage(attackDamage);
+            other.GetComponent<EnemyController>().TakeDamage(attackDamage * powerUpDamageMultiplier);
             hasHit = true;
         }
 
     }
-
     private void OnTriggerEnter(Collider other)
     {
-
         if (other.gameObject.CompareTag("Heart"))
         {
             Debug.Log("Pickup Heart");
-            health += 10;
+            health += powerUpHealth;
             other.gameObject.SetActive(false);
         }
         else if (other.gameObject.CompareTag("Speed"))
         {
             Debug.Log("Pickup Speed");
+            powerUpSpeedMultiplier = 1.5f;
+            isPowerUpActive = true;
             other.gameObject.SetActive(false);
         }
         if (other.gameObject.CompareTag("Damage"))
         {
             Debug.Log("Pickup Damage");
+            powerUpDamageMultiplier = 2;
+            isPowerUpActive = true;
             other.gameObject.SetActive(false);
         }
     }
