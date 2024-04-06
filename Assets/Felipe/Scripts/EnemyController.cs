@@ -6,18 +6,17 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Transform playerTransform;
+    [SerializeField] private Animator animator;
     [SerializeField] private LayerMask whatIsGround, whatIsPlayer;
-
 
     [Header("Movement")]
     [SerializeField] private float walkingSpeed = 4f;
     [SerializeField] private float runningSpeed = 10f;
-    private float _speed;
+    [SerializeField] private float _speed;
 
-    public float speed
+    protected float speed
     {
         get { return _speed; }
         private set
@@ -28,8 +27,6 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-
-
     [Header("Patroling")]
     [SerializeField] private Vector3 walkPoint;
     bool walkPointSet;
@@ -38,18 +35,17 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float walkPivotZ = 33f;
     [SerializeField] private float walkTimer = 0f;
 
-
     [Header("Attacking")]
     [SerializeField] GameObject biteHitBox;
+    [SerializeField] BoxCollider biteBoxCollider;
     [SerializeField] private float timeBetweenAttacks = 3f;
     [SerializeField] private float timeToHit = 0.8f;
     [SerializeField] private float timeDamage = 0.3f;
-    [SerializeField] private int health = 100;
+    [SerializeField] public int health = 100;
     [SerializeField] private int attackDamage = 20;
     bool hasHit = false;
     private bool _isAlive = true;
-    [SerializeField]
-    public bool isAlive
+    protected bool isAlive
     {
         get { return _isAlive; }
         private set
@@ -58,17 +54,13 @@ public class EnemyController : MonoBehaviour
             animator.SetBool("isAlive", value);
         }
     }
-    [SerializeField] private bool isDamagable = true;
+    private bool isDamagable = true;
     bool alreadyAttacked;
-    [SerializeField] BoxCollider biteBoxCollider;
 
     [Header("States")]
     [SerializeField] private float sightRange = 20f;
     [SerializeField] private float attackRange = 4f;
     [SerializeField] private bool playerInSightRange, playerInAttackRange;
-
-    [Header("Animation")]
-    [SerializeField] private Animator animator;
 
     // Start is called before the first frame update
     private void Awake()
@@ -83,11 +75,12 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
+        Move();
+    }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeDamage(50);
-        }
+    #region Movement
+    private void Move()
+    {
         // Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
@@ -100,28 +93,18 @@ public class EnemyController : MonoBehaviour
         }
         else speed = 0f;
 
-        // agent.speed = speed;
-        // animator.SetFloat("speed", speed);
-        // ChangeAnimations();
+        // Check if it takes more than 3 seconds walking, set walkpoint again
         if (walkPointSet)
         {
             walkTimer += Time.deltaTime;
-            if (walkTimer >= 5f)
+            if (walkTimer >= 3f)
             {
                 walkPointSet = false;
                 walkTimer = 0f;
             }
 
         }
-
-
-
     }
-
-    // private void ChangeAnimations()
-    // {
-
-    // }
 
     private void Patroling()
     {
@@ -146,7 +129,7 @@ public class EnemyController : MonoBehaviour
 
     private void SearchWalkPoint()
     {
-        // Calculate random point in range to walk to
+        // Calculate random point in range to walk to 
         float randomX = Random.Range(-walkPointRange, walkPointRange) * 2f;
         float randomZ = Random.Range(-walkPointRange, walkPointRange) * 2f;
 
@@ -164,6 +147,9 @@ public class EnemyController : MonoBehaviour
         speed = runningSpeed;
     }
 
+    #endregion
+
+    #region Attack
     private void AttackPlayer()
     {
         agent.SetDestination(transform.position);
@@ -201,6 +187,9 @@ public class EnemyController : MonoBehaviour
         hasHit = false;
     }
 
+    #endregion
+
+    #region TakeDamage
     private void ResetDamagable()
     {
         isDamagable = true;
@@ -228,21 +217,14 @@ public class EnemyController : MonoBehaviour
         Destroy(gameObject.transform.parent.gameObject);
     }
 
+    #endregion
+
     private void OnTriggerStay(Collider other)
     {
-
         if (other.gameObject.CompareTag("Player") && !hasHit)
         {
-            //Debug.Log("Damage to: " + other.gameObject.name);
             other.GetComponent<PlayerController>().TakeDamage(attackDamage);
             hasHit = true;
         }
-
     }
-
-    // private void EnemyDeath()
-    // {
-
-    //     Destroy(gameObject);
-    // }
 }
