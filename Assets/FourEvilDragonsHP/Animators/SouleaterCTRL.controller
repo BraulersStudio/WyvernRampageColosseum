@@ -36,7 +36,7 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 3
+  - m_ConditionMode: 4
     m_ConditionEvent: speed
     m_EventTreshold: 10
   m_DstStateMachine: {fileID: 0}
@@ -372,25 +372,25 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isAlive
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 1
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isAttacking
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isHit
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -926,17 +926,17 @@ AnimatorStateMachine:
   - {fileID: 2934342730822246012}
   m_EntryTransitions: []
   m_StateMachineTransitions:
+  - first: {fileID: -1174256674679419471}
+    second:
+    - {fileID: -8575667211440483240}
   - first: {fileID: -3393543240631389357}
     second:
     - {fileID: -3042109668120949884}
     - {fileID: 3469893299755448436}
-  - first: {fileID: -1174256674679419471}
-    second:
-    - {fileID: -8575667211440483240}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 340, y: 230, z: 0}
   m_EntryPosition: {x: 40, y: 410, z: 0}
-  m_ExitPosition: {x: -168, y: 60, z: 0}
+  m_ExitPosition: {x: 240, y: 470, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 5044048726356030509}
 --- !u!1101 &866155031769692654

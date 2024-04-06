@@ -9760,32 +9760,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ed1facf74274f64bb0a9d4721495173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
+  speed: 6
   walkSpeed: 10
   runSpeed: 20
   backSpeed: 6
   gravity: -9.81
-  jumpForce: 0
-  isGrounded: 0
-  moveDirection: {x: 0, y: 0, z: 0}
-  velocity: {x: 0, y: 0, z: 0}
-  move: {x: 0, y: 0, z: 0}
-  speed: 6
-  jumpHeight: 3
-  scale: 2
-  groundCheck: {fileID: 8627075172211061233}
-  groundDistance: 0.4
   groudnMask:
     serializedVersion: 2
     m_Bits: 8
+  groundCheck: {fileID: 8627075172211061233}
   weaponGameObject: {fileID: 0}
   weaponBoxCollider: {fileID: 0}
   timeBetweenAttacks: 0.5
   timeToHit: 0.3
   timeDamage: 0.3
-  health: 1000
+  health: 100
   attackDamage: 50
-  isDamagable: 1
+  powerUpSpeedMultiplier: 1
+  powerUpDamageMultiplier: 1
+  powerUpHealth: 40
+  powerUpTime: 5
 --- !u!114 &1914368623
 MonoBehaviour:
   m_ObjectHideFlags: 0
