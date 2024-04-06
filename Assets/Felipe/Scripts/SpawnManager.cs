@@ -9,20 +9,14 @@ public class SpawnManager : MonoBehaviour
     public GameObject enemyPrefab3;
     public GameObject enemyPrefab4;
     public GameObject[] powerupPrefab;
-    private float spawnRangeX = 10;
-    private float spawnZMin = 15; // set min spawn Z
-    private float spawnZMax = 25; // set max spawn Z
 
-    public int enemyCount, enemySpeed;
+    public int enemyCount;
     public int waveCount = 1;
     public GameObject player;
 
-    public Vector3 playerInitialPosition;
-
-    void Awake()
-    {
-        playerInitialPosition = player.transform.position;
-    }
+    private float spawnRangeX = 12.5f;
+    private float spawnRangeZ = 12.5f;
+    private Vector3 spawnPivot = new Vector3(30, 0, 0);
 
     void Update()
     {
@@ -37,34 +31,30 @@ public class SpawnManager : MonoBehaviour
     Vector3 GenerateSpawnPosition()
     {
         float xPos = player.transform.position.x + Random.Range(-spawnRangeX, spawnRangeX);
-        float zPos = player.transform.position.z + Random.Range(spawnZMin, spawnZMax);
-        if (xPos < -8)
-        {
-            return GenerateSpawnPosition();
-        }
-        else
-        {
-            return new Vector3(xPos, player.transform.position.y, zPos);
-        }
+        float zPos = player.transform.position.z + Random.Range(-spawnRangeZ, spawnRangeZ);
+        return new Vector3(xPos, player.transform.position.y, zPos) + spawnPivot;
     }
 
-    void SpawnEnemyWave()
+    private void SpawnPowerup()
     {
-        Vector3 powerupSpawnOffset = new Vector3(0, 0, 0); // make powerups spawn at player end
+        Vector3 powerupSpawnOffset = new Vector3(0, 2, 0);
 
         int randomPowerup = Random.Range(0, powerupPrefab.Length);
         Debug.Log(randomPowerup);
         Instantiate(powerupPrefab[randomPowerup], GenerateSpawnPosition() + powerupSpawnOffset, powerupPrefab[randomPowerup].transform.rotation);
+    }
+
+    void SpawnEnemyWave()
+    {
+        SpawnPowerup();
 
         // Spawn number of enemy based on wave number
-        Debug.Log("Wave: " + waveCount);
         if (waveCount <= 3)
         {
             Instantiate(enemyPrefab1, GenerateSpawnPosition(), enemyPrefab1.transform.rotation);
         }
         else if (waveCount <= 6)
         {
-
             Instantiate(enemyPrefab2, GenerateSpawnPosition(), enemyPrefab2.transform.rotation);
         }
         else if (waveCount < 10)
@@ -76,24 +66,14 @@ public class SpawnManager : MonoBehaviour
             Instantiate(enemyPrefab4, GenerateSpawnPosition(), enemyPrefab4.transform.rotation);
         }
 
-
+        // Increase wave count up to 11, in 11 should win
         if (waveCount == 11)
         {
-
+            // Win game
         }
         else
         {
             waveCount++;
         }
-
-        ResetPlayerPosition(); // put player back at start
-
-    }
-
-    // Move player back to position 
-    void ResetPlayerPosition()
-    {
-        player.transform.position = playerInitialPosition;
-
     }
 }
