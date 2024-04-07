@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     //References    
     private CharacterController controller;
     private Animator anim;
+    private AudioSource sndAtt;
+    public AudioClip sndClip;
 
     // Movement
     [Header("Movement")]
@@ -60,7 +62,7 @@ public class PlayerController : MonoBehaviour
         weaponGameObject = GameObject.Find("weaponHitBox").gameObject;
         weaponBoxCollider = weaponGameObject.GetComponentInChildren<BoxCollider>();
         weaponBoxCollider.enabled = false;
-
+        
     }
 
     private void Update()
@@ -69,6 +71,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             Attack();
+            
         }
 
         if (isPowerUpActive)
@@ -170,7 +173,7 @@ public class PlayerController : MonoBehaviour
             anim.SetTrigger("isAttacking");
 
             Invoke(nameof(DealDamage), timeToHit);
-
+            
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
@@ -218,6 +221,8 @@ public class PlayerController : MonoBehaviour
         }
 
         if (health <= 0) StartCoroutine(onDeath());
+        sndAtt = GetComponent<AudioSource>();
+        sndAtt.PlayOneShot(sndClip);
     }
 
     IEnumerator onDeath()
@@ -226,7 +231,7 @@ public class PlayerController : MonoBehaviour
         isAlive = false;
         isDamagable = false;
         yield return new WaitForSeconds(4f);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     #endregion
@@ -246,9 +251,9 @@ public class PlayerController : MonoBehaviour
         {
             msn = "Damage to: " + other.gameObject.name;
             other.GetComponent<EnemyController>().TakeDamage(attackDamage * powerUpDamageMultiplier);
-            hasHit = true;
+            hasHit = true;            
         }
-
+       
     }
     private void OnTriggerEnter(Collider other)
     {

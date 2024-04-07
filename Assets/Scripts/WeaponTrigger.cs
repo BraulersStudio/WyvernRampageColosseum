@@ -5,6 +5,8 @@ using UnityEngine;
 public class WeaponTrigger : MonoBehaviour
 {
     public PlayerController playerController;
+    AudioSource audioSource;
+    public AudioClip sndwp;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -12,6 +14,8 @@ public class WeaponTrigger : MonoBehaviour
         {
             other.GetComponent<EnemyController>().TakeDamage(playerController.attackDamage);
             Debug.Log("Hit: " + other.gameObject.name);
+            audioSource = GetComponent<AudioSource>();
+            audioSource.PlayOneShot(sndwp);
         }
     }
 }

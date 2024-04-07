@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public TMP_Text colleNumTxt, totalCollTxt, wavCount, msnTxt;
+    public TMP_Text colleNumTxt, totalCollTxt, wavCount, msnTxt, healtmsn;
     private GameObject panel, tuto;    
     public SpawnManager spwnScript;
     public PlayerController playCtrl;  
@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
         wavCount.text = spwnScript.waveCount.ToString();
         totalCollTxt.text = spwnScript.enemyCount.ToString();
         msnTxt.text = playCtrl.msn.ToString();
+        healtmsn.text = playCtrl.health.ToString();
        
 
         if (Input.GetKey(KeyCode.P))
