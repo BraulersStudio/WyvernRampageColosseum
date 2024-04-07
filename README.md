@@ -1,7 +1,7 @@
 # WyvernRampageColosseum
  GAMEJAM #3 UNITY/GEN
 
-<img align='center' src='https://github.com/BraulersStudio/WyvernRampageColosseum/assets/102168375/db6ef43a-7dc5-48b1-aacd-15b28dfd4e72' width='100%'> 
+<img align='center' src='https://github.com/BraulersStudio/WyvernRampageColosseum/assets/102168375/db6ef43a-7dc5-48b1-aacd-15b28dfd4e72' width='100%' height='300px'> 
 **¡Ven y prueba tu valía, conoce la gloria o la muerte; atrévete a enfrentarte a criaturas míticas y colosales, evoluciona y has que tus habilidades crezcan para derrotarlos y ser el campeón!**
 
 ## **Gameplay**
@@ -46,7 +46,7 @@ Las Flacas están detrás de ti, Danzando como muertas locas, Visitando las muer
 <h2 align="center">🌱 **Género:** </h2>
 <p align="center">Arena de batalla</p>
 
-| :---: | :---: | :---: | :---: |
+
 <img align='center' src='https://github.com/BraulersStudio/WyvernRampageColosseum/assets/102168375/33ba2360-02ca-481d-8937-7818bd1b71e7' width="200px" height='100px'> |<img align='center' src='https://github.com/BraulersStudio/WyvernRampageColosseum/assets/102168375/5637cac4-3c75-46d5-a1a5-6e6500450934' width="200px" height='100px'> |<img align='center' src='https://github.com/BraulersStudio/WyvernRampageColosseum/assets/102168375/77b6e865-be05-4050-9f76-8fb2cd794936' width="200px" height='100px'> |<img align='center' src='https://github.com/BraulersStudio/WyvernRampageColosseum/assets/102168375/34b6164a-8b34-4b97-a40e-52a65b4c646e' width="200px" height='100px'> |
 
   
@@ -57,9 +57,8 @@ Las Flacas están detrás de ti, Danzando como muertas locas, Visitando las muer
 
 # **Equipo:** 
 
+| <br><img align='center' src='https://img.itch.zone/aW1nLzE1NjU5MDM0LmpwZw==/original/zXeHdt.jpg' width="100px" height='100px'> <br>Laura C Correa:  <br>` `**DISEÑO DE NIVEL DOCUMENTACIÓN**<br>[Github](https://github.com/Kertiax)  |  <br> <img align='center' src='https://img.itch.zone/aW1nLzE1NjU5MDM2LmpwZw==/original/UjjoVm.jpg' width="100px" height='100px'> <br> Juan Gonzalez:   <br>**PROGRAMACIÓN SCRUM MASTER<br>[Github](https://github.com/hellcrey)**  |<br> <img align='center' src='https://img.itch.zone/aW1nLzE1NjU5MDM5LmpwZw==/original/lYMG2d.jpg' width="100px" height='100px'> <br>Camilo Gomez: <br>**PROGRAMACIÓN ARTISTA TECNICO <br>[Github](https://github.com/CamiloGz001)**|
 | :- | :- | :- |
-| <br><img align='center' src='https://img.itch.zone/aW1nLzE1NjU5MDM0LmpwZw==/original/zXeHdt.jpg' width="200px" height='100px'> `  `Laura C Correa:  <br>` `**DISEÑO DE NIVEL DOCUMENTACIÓN**<br>`   `[Github](https://github.com/Kertiax)  |  <br> <img align='center' src='https://img.itch.zone/aW1nLzE1NjU5MDM2LmpwZw==/original/UjjoVm.jpg' width="200px" height='100px'> Juan Gonzalez:   <br>` `**PROGRAMACIÓN SCRUM MASTER<br>[Github](https://github.com/hellcrey)**  |<br> <img align='center' src='https://img.itch.zone/aW1nLzE1NjU5MDM5LmpwZw==/original/lYMG2d.jpg'> ` `Camilo Gomez: <br>**PROGRAMACIÓN ARTISTA TECNICO <br>[Github](https://github.com/CamiloGz001)**|
-| :- | :- | :- |
-| <br> <img align='center' src='https://img.itch.zone/aW1nLzE1NjYwNTY5LmpwZw==/original/GK5vI1.jpg' width="200px" height='100px'>Felipe Castillo: <br>**DISEÑO DE NIVEL PROGRAMACIÓN<br>[Github](https://github.com/FelipeCastillo23)**|  <br> <img align='center' src='https://img.itch.zone/aW1nLzE1NjU5MDQ3LmpwZw==/original/hzoqOq.jpg' width="200px" height='100px'>Lizbeth Grisales: <br>**UI PROGRAMACIÓN <br>[Github](https://github.com/LIZGRICAS)**||
+| <br> <img align='center' src='https://img.itch.zone/aW1nLzE1NjYwNTY5LmpwZw==/original/GK5vI1.jpg' width="100px" height='100px'><br>Felipe Castillo: <br>**DISEÑO DE NIVEL PROGRAMACIÓN<br>[Github](https://github.com/FelipeCastillo23)**|  <br> <img align='center' src='https://img.itch.zone/aW1nLzE1NjU5MDQ3LmpwZw==/original/hzoqOq.jpg' width="100px" height='100px'><br>Lizbeth Grisales: <br>**UI PROGRAMACIÓN <br>[Github](https://github.com/LIZGRICAS)**|
 
 
