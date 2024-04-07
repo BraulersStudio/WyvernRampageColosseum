@@ -9,6 +9,9 @@ TagManager:
   - Heart
   - Speed
   - Damage
+  - Enemy0
+  - TutoPnl
+  - PausePnl
   layers:
   - Default
   - TransparentFX

@@ -1,46 +1,50 @@
-using System.Collections;
-using System.Collections.Generic;
+using JetBrains.Annotations;
+using System;
 using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public TMP_Text colleNumTxt, totalCollTxt;
-    public GameObject panel;
-    private int colleNum, totalCollNum;
-    public GameObject swpn;
+    public TMP_Text colleNumTxt, totalCollTxt, wavCount, msnTxt;
+    private GameObject panel, tuto;    
+    public SpawnManager spwnScript;
+    public PlayerController playCtrl;  
+    
     void Start()
     {
-       colleNum = swpn.transform.childCount;
-        panel = panel.gameObject;
-        
+        panel = GameObject.FindGameObjectWithTag("PausePnl");
+        tuto = GameObject.FindGameObjectWithTag("TutoPnl");
+        tuto.SetActive(true);
+        Time.timeScale = 0f;
+        panel.SetActive(false);
+       
     }
 
-    public void AddCollect()
-    {
-        totalCollTxt.text = totalCollNum.ToString();
-        colleNum++;
-        colleNumTxt.text = colleNum.ToString();
-    }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
+        wavCount.text = spwnScript.waveCount.ToString();
+        totalCollTxt.text = spwnScript.enemyCount.ToString();
+        msnTxt.text = playCtrl.msn.ToString();
+       
 
-    void PauseScene(Scene scene)
-    {
-        if(Input.GetKey(KeyCode.P))
+        if (Input.GetKey(KeyCode.P))
         {
-           panel.SetActive(true);
+            panel.SetActive(true);
+            Time.timeScale = 0;
         }
-        
-    }
+
+        GOScene();
+
+        if (Input.GetKey(KeyCode.T))
+        {
+            tuto.SetActive(false);
+            Time.timeScale = 1.0f;
+        }
+    }   
 
     public void LoadNextScene()
     {
@@ -52,16 +56,34 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 1 && transform.childCount <= 0)
+        if (SceneManager.GetActiveScene().buildIndex == 1)
         {
             panel.SetActive(true);
 
             if (panel != null)
             {
 
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
 
         }
     }
+
+    public void GOScene() {
+
+        if (playCtrl.health <= 0) {
+            SceneManager.LoadScene("GameOver");
+        }
+    }
+
+    public void VictoryScene()
+    {
+        if (spwnScript.waveCount == 11)
+        {
+            SceneManager.LoadScene("Win");
+        }
+      
+    }
+
+    
 }

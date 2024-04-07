@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 velocity;
     private bool isWalkingBackwards = false;
     private float groundDistance = 0.4f;
+    public string msn;
 
     [Header("Attacking")]
     [SerializeField] GameObject weaponGameObject;
@@ -210,7 +211,7 @@ public class PlayerController : MonoBehaviour
         {
             speed = 0f;
             health -= damage;
-            Debug.Log("Player hit");
+            msn = "Player hit";
             anim.SetTrigger("isHit");
             isDamagable = false;
             Invoke(nameof(ResetDamagable), 1f);
@@ -243,7 +244,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy") && !hasHit)
         {
-            Debug.Log("Damage to: " + other.gameObject.name);
+            msn = "Damage to: " + other.gameObject.name;
             other.GetComponent<EnemyController>().TakeDamage(attackDamage * powerUpDamageMultiplier);
             hasHit = true;
         }
@@ -253,20 +254,20 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Heart"))
         {
-            Debug.Log("Pickup Heart");
+            msn = "Pickup Heart";
             health += powerUpHealth;
             other.gameObject.SetActive(false);
         }
         else if (other.gameObject.CompareTag("Speed"))
         {
-            Debug.Log("Pickup Speed");
+            msn = "Pickup Speed";
             powerUpSpeedMultiplier = 1.5f;
             isPowerUpActive = true;
             other.gameObject.SetActive(false);
         }
         if (other.gameObject.CompareTag("Damage"))
         {
-            Debug.Log("Pickup Damage");
+            msn = "Pickup Damage";
             powerUpDamageMultiplier = 2;
             isPowerUpActive = true;
             other.gameObject.SetActive(false);

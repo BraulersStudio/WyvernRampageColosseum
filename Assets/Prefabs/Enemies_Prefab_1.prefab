@@ -90,6 +90,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy0 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6904098577267602245, guid: 68150e7a49fb72a428ff267c0c824bae, type: 3}
+      propertyPath: m_TagString
+      value: Enemy0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68150e7a49fb72a428ff267c0c824bae, type: 3}
 --- !u!4 &3634721896706080443 stripped
@@ -275,6 +279,10 @@ PrefabInstance:
     - target: {fileID: 6904098577267602245, guid: 68150e7a49fb72a428ff267c0c824bae, type: 3}
       propertyPath: m_Name
       value: Enemy0 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6904098577267602245, guid: 68150e7a49fb72a428ff267c0c824bae, type: 3}
+      propertyPath: m_TagString
+      value: Enemy0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68150e7a49fb72a428ff267c0c824bae, type: 3}
