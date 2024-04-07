@@ -1,8 +1,11 @@
-# WyvernRampageColosseum
+
+
+<h1 align="center">WyvernRampageColosseum</h1>
  GAMEJAM #3 UNITY/GEN
 
-<img align='center' src='https://github.com/BraulersStudio/WyvernRampageColosseum/assets/102168375/db6ef43a-7dc5-48b1-aacd-15b28dfd4e72' width='100%' height='300px'> 
-**¡Ven y prueba tu valía, conoce la gloria o la muerte; atrévete a enfrentarte a criaturas míticas y colosales, evoluciona y has que tus habilidades crezcan para derrotarlos y ser el campeón!**
+<img align='center' src='https://github.com/BraulersStudio/WyvernRampageColosseum/assets/102168375/db6ef43a-7dc5-48b1-aacd-15b28dfd4e72' width='100%' height='500px'> 
+
+## **¡Ven y prueba tu valía, conoce la gloria o la muerte; atrévete a enfrentarte a criaturas míticas y colosales, evoluciona y has que tus habilidades crezcan para derrotarlos y ser el campeón!**
 
 ## **Gameplay**
 En un mundo antiguo y legendario, el Wyvern Rampage Colosseum es el centro de entretenimiento más grande y peligroso de todos los reinos conocidos. Aquí es donde los valientes guerreros se enfrentan a los monstruos más feroces, incluidos los temidos dragones, en una batalla por la gloria y la supervivencia.
@@ -41,16 +44,16 @@ Las Flacas están detrás de ti, Danzando como muertas locas, Visitando las muer
 
 <h2 align="center">🌱 **Tema:** </h2>
 <p align="center">Batalla Medieval por oleadas</p>
-<h2 align="center">🌱 **Escenario:**  </h2>
+<h2 align="center">🚀**Escenario:**  </h2>
 <p align="center">Coliseo tipo arena </p>
-<h2 align="center">🌱 **Género:** </h2>
+<h2 align="center">📚 **Género:** </h2>
 <p align="center">Arena de batalla</p>
 
 
-<img align='center' src='https://github.com/BraulersStudio/WyvernRampageColosseum/assets/102168375/33ba2360-02ca-481d-8937-7818bd1b71e7' width="200px" height='100px'> |<img align='center' src='https://github.com/BraulersStudio/WyvernRampageColosseum/assets/102168375/5637cac4-3c75-46d5-a1a5-6e6500450934' width="200px" height='100px'> |<img align='center' src='https://github.com/BraulersStudio/WyvernRampageColosseum/assets/102168375/77b6e865-be05-4050-9f76-8fb2cd794936' width="200px" height='100px'> |<img align='center' src='https://github.com/BraulersStudio/WyvernRampageColosseum/assets/102168375/34b6164a-8b34-4b97-a40e-52a65b4c646e' width="200px" height='100px'> |
+<img align='center' src='https://github.com/BraulersStudio/WyvernRampageColosseum/assets/102168375/33ba2360-02ca-481d-8937-7818bd1b71e7' width="250px" height='150px'> |<img align='center' src='https://github.com/BraulersStudio/WyvernRampageColosseum/assets/102168375/5637cac4-3c75-46d5-a1a5-6e6500450934' width="250px" height='150px'> |<img align='center' src='https://github.com/BraulersStudio/WyvernRampageColosseum/assets/102168375/77b6e865-be05-4050-9f76-8fb2cd794936' width="250px" height='150px'> |<img align='center' src='https://github.com/BraulersStudio/WyvernRampageColosseum/assets/102168375/34b6164a-8b34-4b97-a40e-52a65b4c646e' width="250px" height='150px'> 
 
   
-### ` `**Visita nuestro itch y GDD**
+###**Visita nuestro itch y GDD**
 
 <br>[itch.io](https://kertiax.itch.io/wyvern-rampage-colosseum)**
 <br>[GDD](https://www.canva.com/design/DAGBeLc5ncY/u2T3-HPDFR005y_bvAufUw/watch)**
