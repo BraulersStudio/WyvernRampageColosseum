@@ -50,7 +50,7 @@ Las Flacas están detrás de ti, Danzando como muertas locas, Visitando las muer
 <p align="center">Arena de batalla</p>
 
 
-<img align='left' src='https://github.com/BraulersStudio/WyvernRampageColosseum/assets/102168375/33ba2360-02ca-481d-8937-7818bd1b71e7' width="250px" height='150px'> <img align='center' src='https://github.com/BraulersStudio/WyvernRampageColosseum/assets/102168375/5637cac4-3c75-46d5-a1a5-6e6500450934' width="250px" height='150px'> <img align='center' src='https://github.com/BraulersStudio/WyvernRampageColosseum/assets/102168375/77b6e865-be05-4050-9f76-8fb2cd794936' width="250px" height='150px'> <img align='right' src='https://github.com/BraulersStudio/WyvernRampageColosseum/assets/102168375/34b6164a-8b34-4b97-a40e-52a65b4c646e' width="250px" height='150px'> 
+<img align='left' src='https://github.com/BraulersStudio/WyvernRampageColosseum/assets/102168375/33ba2360-02ca-481d-8937-7818bd1b71e7' width="200px" height='150px'> <img align='center' src='https://github.com/BraulersStudio/WyvernRampageColosseum/assets/102168375/5637cac4-3c75-46d5-a1a5-6e6500450934' width="200px" height='150px'> <img align='center' src='https://github.com/BraulersStudio/WyvernRampageColosseum/assets/102168375/77b6e865-be05-4050-9f76-8fb2cd794936' width="200px" height='150px'> <img align='center' src='https://github.com/BraulersStudio/WyvernRampageColosseum/assets/102168375/34b6164a-8b34-4b97-a40e-52a65b4c646e' width="200px" height='150px'> 
 
   
 ## **Visita nuestro itch y GDD**
