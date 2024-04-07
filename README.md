@@ -50,13 +50,24 @@ Coliseo tipo arena 
 ` `Arena de batalla
 
 ||<br>|
-| :- | :- |
+| :-![70d8d306-2435-42fa-a38f-917d3a0b94c3](https://github.com/BraulersStudio/WyvernRampageColosseum/assets/102168375/33ba2360-02ca-481d-8937-7818bd1b71e7)
+ | :- 
+![a99a0f94-652e-4d01-98ab-2690ff19526b](https://github.com/BraulersStudio/WyvernRampageColosseum/assets/102168375/5637cac4-3c75-46d5-a1a5-6e6500450934)|
 
+||<br>|
+| :-
+![fotor-ai-2024040583918](https://github.com/BraulersStudio/WyvernRampageColosseum/assets/102168375/77b6e865-be05-4050-9f76-8fb2cd794936)
+ | :- 
+!
+![LogoWRC](https://github.com/BraulersStudio/WyvernRampageColosseum/assets/102168375/34b6164a-8b34-4b97-a40e-52a65b4c646e)|
+  
+### ` `**Género:**
 
-
+<br>[itch.io](https://kertiax.itch.io/wyvern-rampage-colosseum)**
+<br>[GDD](https://www.canva.com/design/DAGBeLc5ncY/u2T3-HPDFR005y_bvAufUw/watch)**
 
 # **Equipo:** 
-
+ 
 | <br>` `Laura C Correa:  <br>` `**DISEÑO DE NIVEL DOCUMENTACIÓN**<br>`   `[Github](https://github.com/Kertiax)  |  <br>Juan Gonzalez:   <br>` `**PROGRAMACIÓN SCRUM MASTER<br>[Github](https://github.com/hellcrey)**  |<br>` `Camilo Gomez: <br>**PROGRAMACIÓN ARTISTA TECNICO <br>[Github](https://github.com/CamiloGz001)**|
 | :- | :- | :- |
 | <br>Felipe Castillo: <br>**DISEÑO DE NIVEL PROGRAMACIÓN<br>[Github](https://github.com/FelipeCastillo23)**|  <br>Lizbeth Grisales: <br>**UI PROGRAMACIÓN <br>[Github](https://github.com/LIZGRICAS)**||
