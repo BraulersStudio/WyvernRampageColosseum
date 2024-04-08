@@ -11,7 +11,7 @@ public class SpawnManager : MonoBehaviour
     public GameObject[] powerupPrefab;
 
     public int enemyCount;
-    public int waveCount = 1;
+    public int waveCount = 0;
     public GameObject player;
     public PlayerController plyCtrl;
     public GameManager gameManager;
@@ -27,8 +27,6 @@ public class SpawnManager : MonoBehaviour
         {
             SpawnEnemyWave();
         }
-
-
     }
 
     Vector3 GenerateSpawnPosition()
@@ -49,35 +47,24 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnEnemyWave()
     {
-        for (int i = 0; i < powerupPrefab.Length -1; i++)
-        {
-
-            SpawnPowerup();
-        }
+        SpawnPowerup();
 
         // Spawn number of enemy based on wave number
         if (waveCount <= 3)
         {
-            
             Instantiate(enemyPrefab1, GenerateSpawnPosition(), enemyPrefab1.transform.rotation);
-            
         }
         else if (waveCount <= 6)
         {
-            
             Instantiate(enemyPrefab2, GenerateSpawnPosition(), enemyPrefab2.transform.rotation);
-           
         }
         else if (waveCount < 10)
         {
             Instantiate(enemyPrefab3, GenerateSpawnPosition(), enemyPrefab3.transform.rotation);
-            
         }
         else if (waveCount == 10)
         {
-            
             Instantiate(enemyPrefab4, GenerateSpawnPosition(), enemyPrefab4.transform.rotation);
-            
         }
 
         // Increase wave count up to 11, in 11 should win

@@ -18,6 +18,16 @@ public class MainMenu : MonoBehaviour
     {
         ResetOnPause();
         ContinueGame();
+        if (Input.GetKey(KeyCode.Space) && SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            PlayGame();
+        }
+
+        if (SceneManager.GetActiveScene().buildIndex != 1)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
 
     }
 
@@ -27,16 +37,17 @@ public class MainMenu : MonoBehaviour
         {
             pausePanel.SetActive(false);
             Time.timeScale = 1.0f;
-       }
+        }
     }
 
-    public void ResetOnPause() {
+    public void ResetOnPause()
+    {
         if (Input.GetKey(KeyCode.R))
         {
             SceneManager.LoadSceneAsync(0);
         }
 
-        
+
     }
 
 }
