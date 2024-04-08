@@ -225,6 +225,7 @@ public class EnemyController : MonoBehaviour
         {
             other.GetComponent<PlayerController>().TakeDamage(attackDamage);
             hasHit = true;
+
         }
     }
 }

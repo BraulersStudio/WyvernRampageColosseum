@@ -1,19 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
-using UnityEngine;  
+using UnityEngine;
+using Unity.VisualScripting;
 
 public class MainMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private GameObject pausePanel;
     public void PlayGame()
     {
         SceneManager.LoadSceneAsync(1);
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        ResetOnPause();
+        ContinueGame();
+
+    }
+
+    public void ContinueGame()
+    {
+        if (Input.GetKey(KeyCode.C))
+        {
+            pausePanel.SetActive(false);
+            Time.timeScale = 1.0f;
+       }
+    }
+
+    public void ResetOnPause() {
+        if (Input.GetKey(KeyCode.R))
+        {
+            SceneManager.LoadSceneAsync(0);
+        }
+
         
     }
+
 }

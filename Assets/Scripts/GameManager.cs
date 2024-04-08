@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public TMP_Text colleNumTxt, totalCollTxt, wavCount, msnTxt, healtmsn;
+    public TMP_Text totalCollTxt, wavCount, msnTxt, healtmsn;
     private GameObject panel, tuto;    
     public SpawnManager spwnScript;
     public PlayerController playCtrl;  
